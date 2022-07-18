@@ -10,9 +10,10 @@ jobs:
 
   build:
 
-    runs-on: [self-hosted, linux, X64, test-1]
+   runs-on: [self-hosted, linux, X64, test-1]
 
-    steps:
-      - uses: actions/checkout@v2
-      - name: Build the stack
-        run: docker-compose up -d
+   steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag nginx:$(date +%s)
+      run: docker build -t nginx --no-cache .
