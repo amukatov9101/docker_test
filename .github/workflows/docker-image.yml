@@ -13,8 +13,6 @@ jobs:
     runs-on: [self-hosted, linux, X64, test-1]
 
     steps:
-      - name: Deploy to Docker swarm
-        uses: wshihadeh/docker-deployment-action@v1
-        with:
-          deployment_mode: docker-swarm
-          args: my_applicaion
+      - uses: actions/checkout@v2
+      - name: Build the stack
+        run: docker-compose up -d
