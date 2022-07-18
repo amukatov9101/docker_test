@@ -13,6 +13,8 @@ jobs:
     runs-on: [self-hosted, linux, X64, test-1]
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      - name: Deploy to Docker swarm
+        uses: wshihadeh/docker-deployment-action@v1
+        with:
+          deployment_mode: docker-swarm
+          args: my_applicaion
