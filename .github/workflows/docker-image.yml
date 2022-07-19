@@ -14,5 +14,7 @@ jobs:
 
    steps:
     - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag nginxx:latest
     - name: Compose
-      run: docker build -t nginx .
+      run: docker service create --image nginxx:latest --name ngiiinx --publish 80:80 --network appnet --replicas 3
